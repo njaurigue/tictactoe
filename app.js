@@ -12,7 +12,7 @@ function updateSquare(square){
             document.getElementById("turn").innerHTML = "Current Turn: O";
             if(checkWin(square)){
                 console.log(turn = " wins!");
-                alert(turn + " wins!");
+                alert("X wins!");
             }
             turn = O;
         }
@@ -23,7 +23,7 @@ function updateSquare(square){
             document.getElementById("turn").innerHTML = "Current Turn: X";
             if(checkWin(square)){
                 console.log(turn = " wins!");
-                alert(turn + " wins!");
+                alert("O wins!");
             }
             turn = X;
         }

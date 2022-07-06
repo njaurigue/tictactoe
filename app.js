@@ -1,5 +1,7 @@
 const X = 0; //X's turn
 const O = 1; //O's turn
+const ON = 0; //bot ON
+const OFF = 1; //bot OFF
 let turn = X; //default X first
 let xSpots = [] //selected X squares
 let oSpots = [] //selected O squares
@@ -11,7 +13,7 @@ function updateSquare(square){
             document.getElementById(square).innerHTML = "<img src='x.png'>";
             document.getElementById("turn").innerHTML = "Current Turn: O";
             if(checkWin(square)){
-                console.log(turn = " wins!");
+                console.log("X wins!");
                 alert("X wins!");
             }
             turn = O;
@@ -22,7 +24,7 @@ function updateSquare(square){
             document.getElementById(square).innerHTML = "<img src='circle.png'></img>"
             document.getElementById("turn").innerHTML = "Current Turn: X";
             if(checkWin(square)){
-                console.log(turn = " wins!");
+                console.log("O wins!");
                 alert("O wins!");
             }
             turn = X;
@@ -71,24 +73,24 @@ function checkWin(square){
 }
 
 function checkCases(spots, cases){
-    console.log(spots);
-    console.log(cases);
     for(let i = 0; i < cases.length; i++){
-        if(containsAll(spots, cases[i])){
-            return true;
+        if(spots.includes(cases[i][0]) &&
+        spots.includes(cases[i][1])){
+        return true;
         }
     }
     return false;
 }
 
-function containsAll(spots, singleCase){
-    if(spots.includes(singleCase[0]) &&
-        spots.includes(singleCase[1])){
-        return true;
-    }
-    return false;
-}
-
 function newGame(){
-
+    console.log("New Game");
+    let i = 1;
+    while(i < 10){
+        document.getElementById(i).innerHTML = "";
+        i++;
+    }
+    document.getElementById("turn").innerHTML = "Current Turn: X";
+    turn = X;
+    xSpots = [];
+    oSpots = [];
 }

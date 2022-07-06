@@ -35,8 +35,8 @@ body p{
 
 .grid{
     background-color: rgb(52, 52, 52);
-    height: 400px;
-    width: 400px;
+    height: 40vh;
+    width: 40vh;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);

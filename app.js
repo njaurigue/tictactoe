@@ -19,11 +19,11 @@ function checkInput(square){
 
         setTimeout(() => {  
             //need to decide which square to select
-            if(canWin(xSpots) > 0){
-                updateSquare(canWin(xSpots));
-            }else /*if(oSpots.length > o){
+            if(canWin(oSpots) > 0){
                 updateSquare(canWin(oSpots));
-            }else*/{
+            }else if(canWin(xSpots) > 0){
+                updateSquare(canWin(xSpots));
+            }else{
                 if(!allSpots.includes(5)){
                     updateSquare(5);
                 }else if(!allSpots.includes(1)){
@@ -46,9 +46,11 @@ function checkInput(square){
             }
         }, 500);
     }
-    if(allSpots.length >= 9){
-        alert("Tie!");
-    }
+    setTimeout(() => {
+        if(allSpots.length >= 9){
+            alert("Tie!");
+        }
+    }), 500;
 }
 
 //check for 2 X's in a row
@@ -94,8 +96,10 @@ function updateSquare(square){
             document.getElementById(square).innerHTML = "<img src='x.png'>";
             document.getElementById("turn").innerHTML = "Current Turn: O";
             if(checkWin(square)){
-                console.log("X wins!");
-                alert("X wins!");
+                setTimeout(() => {
+                    console.log("X wins!");
+                    alert("X wins!");
+                }), 500;
             }
             turn = O;
         }
@@ -105,8 +109,10 @@ function updateSquare(square){
             document.getElementById(square).innerHTML = "<img src='circle.png'></img>"
             document.getElementById("turn").innerHTML = "Current Turn: X";
             if(checkWin(square)){
-                console.log("O wins!");
-                alert("O wins!");
+                setTimeout(() => {
+                    console.log("O wins!");
+                    alert("O wins!");
+                }), 500;
             }
             turn = X;
         }

@@ -80,6 +80,13 @@ function canWin(spots){
             }
         }
         if(matches == 2){
+            if(i == 6){ //edge case
+                for(let x = 2; x < 10; x++){
+                    if(!allSpots.includes(x)){
+                        return X;
+                    }
+                }
+            }
             for(let j = 0; j < 3; j++){
                 if(!winning.includes(cases[i][j]) &&
                     !allSpots.includes(cases[i][j])){

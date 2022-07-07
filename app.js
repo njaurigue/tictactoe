@@ -80,7 +80,6 @@ function canWin(spots){
             }
         }
         if(matches == 2){
-            console.log("i: " + i);
             if(i == 6){ //edge case
                 for(let x = 2; x < 10; x++){
                     if(!allSpots.includes(x)){

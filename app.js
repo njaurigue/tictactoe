@@ -18,7 +18,6 @@ function checkInput(square){
             //singleplayer
             console.log("not checked");
             updateSquare(square);
-    
             setTimeout(() => {  
                 //need to decide which square to select
                 if(canWin(oSpots) > 0){

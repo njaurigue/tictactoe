@@ -5,8 +5,89 @@ const OFF = 1; //bot OFF
 let turn = X; //default X first
 let xSpots = [] //selected X squares
 let oSpots = [] //selected O squares
+let allSpots = [] // all selected squares
+
+function checkInput(square){
+    if(document.getElementById("checkbox").checked){
+        //multiplayer
+        console.log("checked");
+        updateSquare(square);
+    }else{
+        //singleplayer
+        console.log("not checked");
+        updateSquare(square);
+
+        setTimeout(() => {  
+            //need to decide which square to select
+            if(canWin(xSpots) > 0){
+                updateSquare(canWin(xSpots));
+            }else /*if(oSpots.length > o){
+                updateSquare(canWin(oSpots));
+            }else*/{
+                if(!allSpots.includes(5)){
+                    updateSquare(5);
+                }else if(!allSpots.includes(1)){
+                    updateSquare(1);
+                }else if(!allSpots.includes(3)){
+                    updateSquare(3);
+                }else if(!allSpots.includes(7)){
+                    updateSquare(7);
+                }else if(!allSpots.includes(9)){
+                    updateSquare(9);
+                }else if(!allSpots.includes(2)){
+                    updateSquare(2);
+                }else if(!allSpots.includes(4)){
+                    updateSquare(4);
+                }else if(!allSpots.includes(6)){
+                    updateSquare(6);
+                }else{
+                    updateSquare(8);
+                }
+            }
+        }, 500);
+    }
+    if(allSpots.length >= 9){
+        alert("Tie!");
+    }
+}
+
+//check for 2 X's in a row
+//return square to block, -1 otherwise
+function canWin(spots){
+    let cases = [
+        [1,2,3],
+        [4,5,6],
+        [7,8,9],
+        [1,4,7],
+        [2,5,8],
+        [3,6,9],
+        [1,5,9],
+        [3,5,7]
+    ];
+    let winning = [];
+    for(let i = 0; i < cases.length; i++){
+        let matches = 0;
+        for(let j = 0; j < spots.length; j++){
+            if(cases[i].includes(spots[j])){
+                winning.push(spots[j])
+                matches++
+            }
+        }
+        if(matches == 2){
+            for(let j = 0; j < 3; j++){
+                if(!winning.includes(cases[i][j]) &&
+                    !allSpots.includes(cases[i][j])){
+                    return cases[i][j];
+                }
+            }
+        }
+    }
+    return -1;
+}
 
 function updateSquare(square){
+    console.log("updating: " + square);
+    allSpots.push(square);
     if(turn == X){
         if(!xSpots.includes(square) && !oSpots.includes(square)){
             xSpots.push(square);
@@ -93,4 +174,5 @@ function newGame(){
     turn = X;
     xSpots = [];
     oSpots = [];
+    allSpots = [];
 }

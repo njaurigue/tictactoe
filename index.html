@@ -11,17 +11,26 @@
         <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500&family=Source+Code+Pro:wght@300;400&display=swap" rel="stylesheet">
     </head>
     <body>
-        <button id="titleButton"><p id="title">TicTacToe</p></button>
+        <p id="title">TicTacToe</p>
+        <!-- Rounded switch -->
+        <div class="gameType">
+            <p>SinglePlayer (vs Bot)</p>
+            <label class="switch">
+                <input type="checkbox" id="checkbox">
+                <span class="slider round"></span>
+            </label>
+            <p>Multiplayer</p>
+        </div>
         <div class="grid">
-            <button id="1" class="square" onclick="updateSquare(1)"></button>
-            <button id="2" class="square" onclick="updateSquare(2)"></button>
-            <button id="3" class="square" onclick="updateSquare(3)"></button>
-            <button id="4" class="square" onclick="updateSquare(4)"></button>
-            <button id="5" class="square" onclick="updateSquare(5)"></button>
-            <button id="6" class="square" onclick="updateSquare(6)"></button>
-            <button id="7" class="square" onclick="updateSquare(7)"></button>
-            <button id="8" class="square" onclick="updateSquare(8)"></button>
-            <button id="9" class="square" onclick="updateSquare(9)"></button>
+            <button id="1" class="square" onclick="checkInput(1)"></button>
+            <button id="2" class="square" onclick="checkInput(2)"></button>
+            <button id="3" class="square" onclick="checkInput(3)"></button>
+            <button id="4" class="square" onclick="checkInput(4)"></button>
+            <button id="5" class="square" onclick="checkInput(5)"></button>
+            <button id="6" class="square" onclick="checkInput(6)"></button>
+            <button id="7" class="square" onclick="checkInput(7)"></button>
+            <button id="8" class="square" onclick="checkInput(8)"></button>
+            <button id="9" class="square" onclick="checkInput(9)"></button>
         </div>
         <p id="turn">Current Turn: X</p>
         <button id="newGame" onclick="newGame()">New Game</button>

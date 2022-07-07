@@ -19,26 +19,6 @@ function checkInput(square){
             console.log("not checked");
             updateSquare(square);
     
-            if(!allSpots.includes(5)){
-                updateSquare(5);
-            }else if(!allSpots.includes(1)){
-                updateSquare(1);
-            }else if(!allSpots.includes(3)){
-                updateSquare(3);
-            }else if(!allSpots.includes(7)){
-                updateSquare(7);
-            }else if(!allSpots.includes(9)){
-                updateSquare(9);
-            }else if(!allSpots.includes(2)){
-                updateSquare(2);
-            }else if(!allSpots.includes(4)){
-                updateSquare(4);
-            }else if(!allSpots.includes(6)){
-                updateSquare(6);
-            }else{
-                updateSquare(8);
-            }
-            /*
             setTimeout(() => {  
                 //need to decide which square to select
                 if(canWin(oSpots) > 0){
@@ -67,7 +47,6 @@ function checkInput(square){
                     }
                 }
             }, 500);
-            */
         }
         if(allSpots.length >= 9){
             setTimeout(() => {

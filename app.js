@@ -52,6 +52,7 @@ function checkInput(square){
                 console.log("Tie!");
                 alert("Tie!");
             }), 500;
+            won = true;
         }
     }
 }

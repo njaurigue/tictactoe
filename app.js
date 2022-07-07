@@ -6,51 +6,55 @@ let turn = X; //default X first
 let xSpots = [] //selected X squares
 let oSpots = [] //selected O squares
 let allSpots = [] // all selected squares
+let won = false;
 
 function checkInput(square){
-    if(document.getElementById("checkbox").checked){
-        //multiplayer
-        console.log("checked");
-        updateSquare(square);
-    }else{
-        //singleplayer
-        console.log("not checked");
-        updateSquare(square);
-
-        setTimeout(() => {  
-            //need to decide which square to select
-            if(canWin(oSpots) > 0){
-                updateSquare(canWin(oSpots));
-            }else if(canWin(xSpots) > 0){
-                updateSquare(canWin(xSpots));
-            }else{
-                if(!allSpots.includes(5)){
-                    updateSquare(5);
-                }else if(!allSpots.includes(1)){
-                    updateSquare(1);
-                }else if(!allSpots.includes(3)){
-                    updateSquare(3);
-                }else if(!allSpots.includes(7)){
-                    updateSquare(7);
-                }else if(!allSpots.includes(9)){
-                    updateSquare(9);
-                }else if(!allSpots.includes(2)){
-                    updateSquare(2);
-                }else if(!allSpots.includes(4)){
-                    updateSquare(4);
-                }else if(!allSpots.includes(6)){
-                    updateSquare(6);
+    if(!won){
+        if(document.getElementById("checkbox").checked){
+            //multiplayer
+            console.log("checked");
+            updateSquare(square);
+        }else{
+            //singleplayer
+            console.log("not checked");
+            updateSquare(square);
+    
+            setTimeout(() => {  
+                //need to decide which square to select
+                if(canWin(oSpots) > 0){
+                    updateSquare(canWin(oSpots));
+                }else if(canWin(xSpots) > 0){
+                    updateSquare(canWin(xSpots));
                 }else{
-                    updateSquare(8);
+                    if(!allSpots.includes(5)){
+                        updateSquare(5);
+                    }else if(!allSpots.includes(1)){
+                        updateSquare(1);
+                    }else if(!allSpots.includes(3)){
+                        updateSquare(3);
+                    }else if(!allSpots.includes(7)){
+                        updateSquare(7);
+                    }else if(!allSpots.includes(9)){
+                        updateSquare(9);
+                    }else if(!allSpots.includes(2)){
+                        updateSquare(2);
+                    }else if(!allSpots.includes(4)){
+                        updateSquare(4);
+                    }else if(!allSpots.includes(6)){
+                        updateSquare(6);
+                    }else{
+                        updateSquare(8);
+                    }
                 }
-            }
-        }, 500);
-    }
-    setTimeout(() => {
-        if(allSpots.length >= 9){
-            alert("Tie!");
+            }, 500);
         }
-    }), 500;
+        if(allSpots.length >= 9){
+            setTimeout(() => {
+                console.log("Tie!");
+                alert("Tie!");
+            }), 500;
+        }
+    }
 }
 
 //check for 2 X's in a row
@@ -96,6 +100,7 @@ function updateSquare(square){
             document.getElementById(square).innerHTML = "<img src='x.png'>";
             document.getElementById("turn").innerHTML = "Current Turn: O";
             if(checkWin(square)){
+                won = true;
                 setTimeout(() => {
                     console.log("X wins!");
                     alert("X wins!");
@@ -109,6 +114,7 @@ function updateSquare(square){
             document.getElementById(square).innerHTML = "<img src='circle.png'></img>"
             document.getElementById("turn").innerHTML = "Current Turn: X";
             if(checkWin(square)){
+                won = true;
                 setTimeout(() => {
                     console.log("O wins!");
                     alert("O wins!");
@@ -181,4 +187,5 @@ function newGame(){
     xSpots = [];
     oSpots = [];
     allSpots = [];
+    won = false;
 }

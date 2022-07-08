@@ -1,5 +1,5 @@
-const X = 0; //X's turn
-const O = 1; //O's turn
+const X = true; //X's turn
+const O = false; //O's turn
 const ON = 0; //bot ON
 const OFF = 1; //bot OFF
 let turn = X; //default X first
@@ -9,7 +9,7 @@ let allSpots = [] // all selected squares
 let won = false;
 
 function checkInput(square){
-    if(!won){
+    if(!won && !allSpots.includes(square)){
         if(document.getElementById("checkbox").checked){
             //multiplayer
             console.log("checked");
@@ -75,16 +75,27 @@ function canWin(spots){
         let matches = 0;
         for(let j = 0; j < spots.length; j++){
             if(cases[i].includes(spots[j])){
-                winning.push(spots[j])
-                matches++
+                winning.push(spots[j]);
+                matches++;
             }
         }
         if(matches == 2){
+            console.log("case: " + i);
             for(let j = 0; j < 3; j++){
-                if((i == 6 || i == 7) && oSpots.includes(5)){ //edge case
-                    for(let x = 2; x < 10; x++){
-                        if(!allSpots.includes(x)){
-                            return x;
+                if(turn == O){
+                    if((i == 6 || i == 7) && oSpots.includes(5)){ //edge case
+                        for(let x = 2; x < 10; x += 2){
+                            if(!allSpots.includes(x)){
+                                return x;
+                            }
+                        }
+                    }
+                }else{
+                    if((i == 6 || i == 7) && xSpots.includes(5)){ //edge case
+                        for(let x = 2; x < 10; x++){
+                            if(!allSpots.includes(x)){
+                                return x;
+                            }
                         }
                     }
                 }
@@ -100,9 +111,8 @@ function canWin(spots){
 
 function updateSquare(square){
     console.log("updating: " + square);
-    allSpots.push(square);
     if(turn == X){
-        if(!xSpots.includes(square) && !oSpots.includes(square)){
+        if(!allSpots.includes(square)){
             xSpots.push(square);
             document.getElementById(square).innerHTML = "<img src='x.png'>";
             document.getElementById("turn").innerHTML = "Current Turn: O";
@@ -116,7 +126,7 @@ function updateSquare(square){
             turn = O;
         }
     }else{
-        if(!xSpots.includes(square) && !oSpots.includes(square)){
+        if(!allSpots.includes(square)){
             oSpots.push(square);
             document.getElementById(square).innerHTML = "<img src='circle.png'></img>"
             document.getElementById("turn").innerHTML = "Current Turn: X";
@@ -130,6 +140,7 @@ function updateSquare(square){
             turn = X;
         }
     }
+    allSpots.push(square);
 }
 
 function checkWin(square){

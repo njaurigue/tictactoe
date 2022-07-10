@@ -114,7 +114,7 @@ function updateSquare(square){
     if(turn == X){
         if(!allSpots.includes(square)){
             xSpots.push(square);
-            document.getElementById(square).innerHTML = "<img src='x.png'>";
+            document.getElementById(square).innerHTML = "<img src='images/x.png'>";
             document.getElementById("turn").innerHTML = "Current Turn: O";
             if(checkWin(square)){
                 won = true;
@@ -128,7 +128,7 @@ function updateSquare(square){
     }else{
         if(!allSpots.includes(square)){
             oSpots.push(square);
-            document.getElementById(square).innerHTML = "<img src='circle.png'></img>"
+            document.getElementById(square).innerHTML = "<img src='images/circle.png'></img>"
             document.getElementById("turn").innerHTML = "Current Turn: X";
             if(checkWin(square)){
                 won = true;

@@ -60,12 +60,12 @@ body p{
     background-color: hsl(240, 7%, 14%);
 }
 
-.grid img[src="x.png"]{
+.grid img[src="images/x.png"]{
     height: 90px;
     filter: invert(100%);
 }
 
-.grid img[src="circle.png"]{
+.grid img[src="images/circle.png"]{
     height: 60px;
     filter: invert(100%);
 }

@@ -77,9 +77,14 @@ body p{
 
 #newGame{
     background-color: rgb(52, 52, 52);
-    margin: 0;
     color: white;
     border: none;
+}
+
+#githubIcon{
+    margin: 1vh 0;
+    filter: invert();
+    width: 2rem;
 }
 
 /*TOGGLE SWITCH*/

@@ -20,10 +20,12 @@ function checkInput(square){
             updateSquare(square);
             setTimeout(() => {  
                 //need to decide which square to select
-                if(canWin(oSpots) > 0){
-                    updateSquare(canWin(oSpots));
-                }else if(canWin(xSpots) > 0){
-                    updateSquare(canWin(xSpots));
+                if(canWin(oSpots, O) > 0){
+                    console.log("canWin O: " + canWin(oSpots))
+                    updateSquare(canWin(oSpots, O));
+                }else if(canWin(xSpots, X) > 0){
+                    console.log("canWin X: " + canWin(xSpots))
+                    updateSquare(canWin(xSpots, X));
                 }else{
                     if(!allSpots.includes(5)){
                         updateSquare(5);
@@ -59,7 +61,7 @@ function checkInput(square){
 
 //check for 2 X's in a row
 //return square to block, -1 otherwise
-function canWin(spots){
+function canWin(spots, list){
     let cases = [
         [1,2,3],
         [4,5,6],
@@ -81,24 +83,15 @@ function canWin(spots){
         }
         if(matches == 2){
             console.log("case: " + i);
-            for(let j = 0; j < 3; j++){
-                if(turn == O){
-                    if((i == 6 || i == 7) && oSpots.includes(5)){ //edge case
-                        for(let x = 2; x < 10; x += 2){
-                            if(!allSpots.includes(x)){
-                                return x;
-                            }
-                        }
-                    }
-                }else{
-                    if((i == 6 || i == 7) && xSpots.includes(5)){ //edge case
-                        for(let x = 2; x < 10; x++){
-                            if(!allSpots.includes(x)){
-                                return x;
-                            }
-                        }
-                    }
+
+            //diagonal edge case
+            if((i == 6 || i == 7) && list == X){
+                if(oSpots.includes(5) && allSpots.length == 3){
+                    return 2;
                 }
+            }
+
+            for(let j = 0; j < 3; j++){
                 if(!winning.includes(cases[i][j]) &&
                     !allSpots.includes(cases[i][j])){
                     return cases[i][j];

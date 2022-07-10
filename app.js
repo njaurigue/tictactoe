@@ -1,7 +1,5 @@
 const X = true; //X's turn
 const O = false; //O's turn
-const ON = 0; //bot ON
-const OFF = 1; //bot OFF
 let turn = X; //default X first
 let xSpots = [] //selected X squares
 let oSpots = [] //selected O squares
@@ -11,20 +9,15 @@ let won = false;
 function checkInput(square){
     if(!won && !allSpots.includes(square)){
         if(document.getElementById("checkbox").checked){
-            //multiplayer
-            console.log("checked");
+            //multiplayer (update on user input)
             updateSquare(square);
         }else{
-            //singleplayer
-            console.log("not checked");
+            //singleplayer (update on user input w/ response)
             updateSquare(square);
             setTimeout(() => {  
-                //need to decide which square to select
                 if(canWin(oSpots, O) > 0){
-                    console.log("canWin O: " + canWin(oSpots))
                     updateSquare(canWin(oSpots, O));
                 }else if(canWin(xSpots, X) > 0){
-                    console.log("canWin X: " + canWin(xSpots))
                     updateSquare(canWin(xSpots, X));
                 }else{
                     if(!allSpots.includes(5)){
@@ -59,8 +52,8 @@ function checkInput(square){
     }
 }
 
-//check for 2 X's in a row
-//return square to block, -1 otherwise
+//check for 2/3 in a row of either X or O
+//return square to win/block, -1 otherwise
 function canWin(spots, list){
     let cases = [
         [1,2,3],
@@ -91,6 +84,7 @@ function canWin(spots, list){
                 }
             }
 
+            //otherwise, fill third spot for winning case (to block or win)
             for(let j = 0; j < 3; j++){
                 if(!winning.includes(cases[i][j]) &&
                     !allSpots.includes(cases[i][j])){

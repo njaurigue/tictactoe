@@ -11,7 +11,7 @@
 }
 
 body{
-    background-color: red/*hsl(240, 7%, 6%)*/;
+    background-color: hsl(240, 7%, 6%);
     margin: 0;
     
     display: flex;
